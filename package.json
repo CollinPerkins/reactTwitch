@@ -1,7 +1,7 @@
 {
-  "name": "randomQuote",
+  "name": "titter",
   "version": "1.0.0",
-  "description": "React Random Quote",
+  "description": "React Twitter",
   "main": "app.js",
   "repository": "",
   "scripts": {
