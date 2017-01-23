@@ -3,7 +3,6 @@ const path = require('path');
 const port = process.env.PORT || 3030;
 const app = express();
 const cors = require('cors');
-const axios = require('axios');
 
 app.use(express.static(__dirname + '/'));
 
