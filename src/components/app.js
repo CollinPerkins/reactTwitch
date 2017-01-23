@@ -10,18 +10,22 @@ export default class App extends Component {
   }
 
   componentWillMount(){
-    // $.ajax({
-    //   url: ``,
-    //   jsonp: "callback",
-    //   dataType: "jsonp",
-    //   data: {
-    //     format: "json"
-    //   },
-    //   success: function( response ) {
-    //     this.setState({
-    //     })
-    //   }.bind(this)
+    // $.getJSON('https://api.twitch.tv/kraken/streams/freecodecamp?callback=?', function(data) {
+    //   console.log(data);
     // });
+    $.ajax({
+      url: `https://api.twitch.tv/kraken/streams/freecodecamp`,
+      jsonp: "callback",
+      dataType: "jsonp",
+      data: {
+        format: "json"
+      },
+      success: function( response ) {
+        // this.setState({
+        // })
+        console.log(response);
+      }
+    });
   }
 
   render() {

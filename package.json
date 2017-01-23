@@ -1,7 +1,7 @@
 {
-  "name": "titter",
+  "name": "twitch",
   "version": "1.0.0",
-  "description": "React Twitter",
+  "description": "React Twitch",
   "main": "app.js",
   "repository": "",
   "scripts": {
