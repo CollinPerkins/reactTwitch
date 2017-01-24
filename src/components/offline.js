@@ -6,12 +6,12 @@ export default class Offline extends Component {
     return (
       <li key={this.props.index} className="list-group-item ">
         <div className="col-md-2">
-          <img src={this.props.userStream.stream.channel.logo}></img>
+          <img src={this.props.user.logo}></img>
         </div>
 
-        <a className="col-md-3" href={this.props.userStream._links.channel} target="_blank">
+        <a className="col-md-3" href={`https://www.twitch.tv/${this.props.user.name}`} target="_blank">
           <h4 >
-            {this.props.user}
+            {this.props.user.name}
           </h4>
         </a>
         <div className="col-md-7">

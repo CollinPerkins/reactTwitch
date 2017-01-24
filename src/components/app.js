@@ -7,6 +7,8 @@ import Error from './error';
 import Offline from './offline';
 import Streamer from './streamer';
 
+// import { CLIENT_ID } from './config.js';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +44,7 @@ export default class App extends Component {
       if(user.data.stream === null){
         if(!this.state.offlineFilter){
           return (
-            <Offline index={index} user={this.state.usersList[index]}/>
+            <Offline index={index} user={this.state.offlineUserData[index].data}/>
           )
         } else {
           return;
@@ -59,17 +61,28 @@ export default class App extends Component {
   };
 
   componentWillMount(){
-    const userList = this.state.usersList.map((user) => {
-      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
+    const userListStreams = this.state.usersList.map((user) => {
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${process.env.CLIENT_ID}`)
       .then(function (response) {
-        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
+        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=${process.env.CLIENT_ID}`)
       })
       .catch(function (error) {
         return {error: 'error'};
       });
     })
 
-    const users = Bluebird.all(userList)
+    const userListTwitch = this.state.usersList.map((user) => {
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${process.env.CLIENT_ID}`).catch(function (error) {
+        return {error: 'error'};
+      });
+    })
+
+    const streamers = Bluebird.all(userListTwitch)
+     .then((offlineUserData) => {
+       this.setState({offlineUserData: offlineUserData});
+     });
+
+    const users = Bluebird.all(userListStreams)
      .then((userData) => {
        this.setState({userData: userData});
      });
@@ -86,7 +99,6 @@ export default class App extends Component {
   errorView() {
     this.setState({errorFilter: !this.state.errorFilter});
   }
-
   render() {
     return (
       <div>
@@ -96,6 +108,7 @@ export default class App extends Component {
         <ul className="list-group">
           {this.renderUsers()}
         </ul>
+        <a href="https://ancient-plateau-27575.herokuapp.com/" target="_blank"><h2> Github Twitch App</h2></a>
       </div>
     );
   }
