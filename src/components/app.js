@@ -7,7 +7,7 @@ import Error from './error';
 import Offline from './offline';
 import Streamer from './streamer';
 
-// import { CLIENT_ID } from './config.js';
+import { CLIENT_ID } from './config.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -62,9 +62,9 @@ export default class App extends Component {
 
   componentWillMount(){
     const userListStreams = this.state.usersList.map((user) => {
-      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${CLIENT_ID}`)
       .then(function (response) {
-        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
+        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=${CLIENT_ID}`)
       })
       .catch(function (error) {
         return {error: 'error'};
@@ -72,7 +72,7 @@ export default class App extends Component {
     })
 
     const userListTwitch = this.state.usersList.map((user) => {
-      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`).catch(function (error) {
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${CLIENT_ID}`).catch(function (error) {
         return {error: 'error'};
       });
     })
