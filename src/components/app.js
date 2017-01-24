@@ -62,9 +62,9 @@ export default class App extends Component {
 
   componentWillMount(){
     const userListStreams = this.state.usersList.map((user) => {
-      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${CLIENT_ID}`)
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
       .then(function (response) {
-        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=${CLIENT_ID}`)
+        return axios.get(`https://api.twitch.tv/kraken/streams/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`)
       })
       .catch(function (error) {
         return {error: 'error'};
@@ -72,7 +72,7 @@ export default class App extends Component {
     })
 
     const userListTwitch = this.state.usersList.map((user) => {
-      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=${CLIENT_ID}`).catch(function (error) {
+      return axios.get(`https://api.twitch.tv/kraken/users/${user}?client_id=pl279j6lfuewen5dotua3yvv6zx1ma`).catch(function (error) {
         return {error: 'error'};
       });
     })
@@ -108,7 +108,7 @@ export default class App extends Component {
         <ul className="list-group">
           {this.renderUsers()}
         </ul>
-        <a href="https://ancient-plateau-27575.herokuapp.com/" target="_blank"><h2> Github Twitch App</h2></a>
+        <a href="https://github.com/CollinPerkins/reactTwitch" target="_blank"><h2> Github Twitch App</h2></a>
       </div>
     );
   }
