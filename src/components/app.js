@@ -9,6 +9,7 @@ import Streamer from './streamer';
 
 // import { CLIENT_ID } from './config.js';
 
+console.log(process.env.CLIENT_ID);
 export default class App extends Component {
   constructor(props) {
     super(props);
