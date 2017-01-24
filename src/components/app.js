@@ -7,7 +7,7 @@ import Error from './error';
 import Offline from './offline';
 import Streamer from './streamer';
 
-import { CLIENT_ID } from './config.js';
+// import { CLIENT_ID } from './config.js';
 
 export default class App extends Component {
   constructor(props) {
